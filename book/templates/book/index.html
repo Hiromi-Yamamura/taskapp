@@ -1,0 +1,790 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% load static %}
+
+
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+
+    <!-- Start lane -->
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header gehan_color">
+          <h3 class="card-title h5 mb-1 text-center">
+            下版予定
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="backlog">
+            <!-- Start task -->
+            {% for item in object_list %}
+            {% if item.stage == 1 %}
+            <div id="{{ item.id }}" data-index="{{ item.id }}" class="card mb-3 cursor-grab detail-modal shadow-sm">
+              <div class="card-body" id="{{ item.id }}">
+                {% if item.status == 1 %}
+                <span id="{{ item.id }}" class="badge bg-primary text-white mb-2">下版作業中</span>
+                {% elif item.status == 2 %}
+                <span id="{{ item.id }}" class="badge bg-warning text-black mb-2">PDF待ち</span>
+                {% elif item.status == 3 %}
+                <span id="{{ item.id }}" class="badge bg-danger text-white mb-2">PDF作成済み</span>
+                {% elif item.status == 4 %}
+                <span id="{{ item.id }}" class="badge bg-info text-white mb-2">先方確認中</span>
+                {% elif item.status == 5 %}
+                <span id="{{ item.id }}" class="badge bg-success text-white mb-2">三協美術に依頼</span>
+                {% endif %}
+                <p id="{{ item.id }}" class="mb-0 backlog-card">{{ item.title }}</p>
+
+                <div class="b_right" id="{{ item.id }}">
+                  {% if item.operator == 1 %}
+                  <img src="{% static 'book/img/warai.gif' %}" alt="warai" width="32" height="32"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    森澤@情報処理室</span>
+                  {% elif item.operator == 2 %}
+                  <img src="{% static 'book/img/poke.gif' %}" alt="poke" width="28" height="28" id="{{ item.id }}"><span
+                    class="fs-65" id="{{ item.id }}"> 今野</span>
+                  {% elif item.operator == 3 %}
+                  <img src="{% static 'book/img/dommune.gif' %}" alt="dommune" width="28" height="28"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    yamamura</span>
+                  {% endif %}
+                </div>
+                <div id="{{ item.id }}" class="text-right">
+                  {% if item.percent == 0 %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}%</small>
+                  {% else %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}0%</small>
+                  {% endif %}
+                </div>
+                <div class="progress" style="height: 5px;" id="{{ item.id }}">
+                  <div class="progress-bar" role="progressbar" style="width: {{ item.percent }}0%;" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100" id="{{ item.id }}"></div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!-- End task -->
+          </div>
+
+          <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            ＋ 新規追加
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 矢印を配置するコンテナ -->
+    <div class="col-auto arrow-container d-none d-sm-block mt-5">
+      <div class="arrow-right"></div>
+    </div>
+
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header gehanzumi_color">
+          <h3 class="card-title h5 mb-1 text-center">
+            下版済み
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="prepare">
+            <!-- Start task -->
+            {% for item in object_list %}
+            {% if item.stage == 2 %}
+            <div id="{{ item.id }}" data-index="{{ item.id }}" class="card mb-3 cursor-grab detail-modal shadow-sm">
+              <div class="card-body" id="{{ item.id }}">
+                {% if item.status == 1 %}
+                <span id="{{ item.id }}" class="badge bg-primary text-white mb-2">下版作業中</span>
+                {% elif item.status == 2 %}
+                <span id="{{ item.id }}" class="badge bg-warning text-black mb-2">PDF待ち</span>
+                {% elif item.status == 3 %}
+                <span id="{{ item.id }}" class="badge bg-danger text-white mb-2">PDF作成済み</span>
+                {% elif item.status == 4 %}
+                <span id="{{ item.id }}" class="badge bg-info text-white mb-2">先方確認中</span>
+                {% elif item.status == 5 %}
+                <span id="{{ item.id }}" class="badge bg-success text-white mb-2">三協美術に依頼</span>
+                {% endif %}
+                <p id="{{ item.id }}" class="mb-0 backlog-card">{{ item.title }}</p>
+
+                <div class="b_right" id="{{ item.id }}">
+                  {% if item.operator == 1 %}
+                  <img src="{% static 'book/img/warai.gif' %}" alt="warai" width="32" height="32"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    森澤@情報処理室</span>
+                  {% elif item.operator == 2 %}
+                  <img src="{% static 'book/img/poke.gif' %}" alt="poke" width="28" height="28" id="{{ item.id }}"><span
+                    class="fs-65" id="{{ item.id }}"> 今野</span>
+                  {% elif item.operator == 3 %}
+                  <img src="{% static 'book/img/dommune.gif' %}" alt="dommune" width="28" height="28"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    yamamura</span>
+                  {% endif %}
+                </div>
+                <div class="text-right" id="{{ item.id }}">
+                  {% if item.percent == 0 %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}%</small>
+                  {% else %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}0%</small>
+                  {% endif %}
+                </div>
+                <div class="progress" style="height: 5px;" id="{{ item.id }}">
+                  <div class="progress-bar" role="progressbar" style="width: {{ item.percent }}0%;" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100" id="{{ item.id }}"></div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!-- End task -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 矢印を配置するコンテナ -->
+    <div class="col-auto arrow-container d-none d-sm-block mt-5">
+      <div class="arrow-right"></div>
+    </div>
+
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header sagyou_color">
+          <h3 class="card-title h5 mb-1 text-center">
+            作業中
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="progress">
+            <!-- Start task -->
+            {% for item in object_list %}
+            {% if item.stage == 3 %}
+            <div id="{{ item.id }}" data-index="{{ item.id }}" class="card mb-3 cursor-grab detail-modal shadow-sm">
+              <div class="card-body" id="{{ item.id }}">
+                {% if item.status == 1 %}
+                <span id="{{ item.id }}" class="badge bg-primary text-white mb-2">下版作業中</span>
+                {% elif item.status == 2 %}
+                <span id="{{ item.id }}" class="badge bg-warning text-black mb-2">PDF待ち</span>
+                {% elif item.status == 3 %}
+                <span id="{{ item.id }}" class="badge bg-danger text-white mb-2">PDF作成済み</span>
+                {% elif item.status == 4 %}
+                <span id="{{ item.id }}" class="badge bg-info text-white mb-2">先方確認中</span>
+                {% elif item.status == 5 %}
+                <span id="{{ item.id }}" class="badge bg-success text-white mb-2">三協美術に依頼</span>
+                {% endif %}
+                <p id="{{ item.id }}" class="mb-0 backlog-card">{{ item.title }}</p>
+
+                <div class="b_right" id="{{ item.id }}">
+                  {% if item.operator == 1 %}
+                  <img src="{% static 'book/img/warai.gif' %}" alt="warai" width="32" height="32"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    森澤@情報処理室</span>
+                  {% elif item.operator == 2 %}
+                  <img src="{% static 'book/img/poke.gif' %}" alt="poke" width="28" height="28" id="{{ item.id }}"><span
+                    class="fs-65" id="{{ item.id }}"> 今野</span>
+                  {% elif item.operator == 3 %}
+                  <img src="{% static 'book/img/dommune.gif' %}" alt="dommune" width="28" height="28"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    yamamura</span>
+                  {% endif %}
+                </div>
+                <div class="text-right" id="{{ item.id }}">
+                  {% if item.percent == 0 %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}%</small>
+                  {% else %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}0%</small>
+                  {% endif %}
+                </div>
+                <div class="progress" style="height: 5px;" id="{{ item.id }}">
+                  <div class="progress-bar" role="progressbar" style="width: {{ item.percent }}0%;" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100" id="{{ item.id }}"></div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!-- End task -->
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 矢印を配置するコンテナ -->
+    <div class="col-auto arrow-container d-none d-sm-block mt-5">
+      <div class="arrow-right"></div>
+    </div>
+
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header kakunin_color">
+          <h3 class="card-title h5 mb-1 text-center">
+            最終確認中
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="check">
+            <!-- Start task -->
+            {% for item in object_list %}
+            {% if item.stage == 4 %}
+            <div id="{{ item.id }}" data-index="{{ item.id }}" class="card mb-3 cursor-grab detail-modal shadow-sm">
+              <div class="card-body" id="{{ item.id }}">
+                {% if item.status == 1 %}
+                <span id="{{ item.id }}" class="badge bg-primary text-white mb-2">下版作業中</span>
+                {% elif item.status == 2 %}
+                <span id="{{ item.id }}" class="badge bg-warning text-black mb-2">PDF待ち</span>
+                {% elif item.status == 3 %}
+                <span id="{{ item.id }}" class="badge bg-danger text-white mb-2">PDF作成済み</span>
+                {% elif item.status == 4 %}
+                <span id="{{ item.id }}" class="badge bg-info text-white mb-2">先方確認中</span>
+                {% elif item.status == 5 %}
+                <span id="{{ item.id }}" class="badge bg-success text-white mb-2">三協美術に依頼</span>
+                {% endif %}
+                <p id="{{ item.id }}" class="mb-0 backlog-card">{{ item.title }}</p>
+
+                <div class="b_right" id="{{ item.id }}">
+                  {% if item.operator == 1 %}
+                  <img src="{% static 'book/img/warai.gif' %}" alt="warai" width="32" height="32"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    森澤@情報処理室</span>
+                  {% elif item.operator == 2 %}
+                  <img src="{% static 'book/img/poke.gif' %}" alt="poke" width="28" height="28" id="{{ item.id }}"><span
+                    class="fs-65" id="{{ item.id }}"> 今野</span>
+                  {% elif item.operator == 3 %}
+                  <img src="{% static 'book/img/dommune.gif' %}" alt="dommune" width="28" height="28"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    yamamura</span>
+                  {% endif %}
+                </div>
+                <div class="text-right" id="{{ item.id }}">
+                  {% if item.percent == 0 %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}%</small>
+                  {% else %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}0%</small>
+                  {% endif %}
+                </div>
+                <div class="progress" style="height: 5px;" id="{{ item.id }}">
+                  <div class="progress-bar" role="progressbar" style="width: {{ item.percent }}0%;" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100" id="{{ item.id }}"></div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!-- End task -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 矢印を配置するコンテナ -->
+    <div class="col-auto arrow-container d-none d-sm-block mt-5">
+      <div class="arrow-right"></div>
+    </div>
+
+    <!-- Start lane -->
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header kanryou_color">
+          <h3 class="card-title h5 mb-1 text-center">
+            作業完了
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="completed">
+            <!-- Start task -->
+            {% for item in object_list %}
+            {% if item.stage == 5 %}
+            <div id="{{ item.id }}" data-index="{{ item.id }}" class="card mb-3 cursor-grab detail-modal shadow-sm">
+              <div class="card-body" id="{{ item.id }}">
+                {% if item.status == 1 %}
+                <span id="{{ item.id }}" class="badge bg-primary text-white mb-2">下版作業中</span>
+                {% elif item.status == 2 %}
+                <span id="{{ item.id }}" class="badge bg-warning text-black mb-2">PDF待ち</span>
+                {% elif item.status == 3 %}
+                <span id="{{ item.id }}" class="badge bg-danger text-white mb-2">PDF作成済み</span>
+                {% elif item.status == 4 %}
+                <span id="{{ item.id }}" class="badge bg-info text-white mb-2">先方確認中</span>
+                {% elif item.status == 5 %}
+                <span id="{{ item.id }}" class="badge bg-success text-white mb-2">三協美術に依頼</span>
+                {% endif %}
+                <p id="{{ item.id }}" class="mb-0 backlog-card">{{ item.title }}</p>
+
+                <div class="b_right" id="{{ item.id }}">
+                  {% if item.operator == 1 %}
+                  <img src="{% static 'book/img/warai.gif' %}" alt="warai" width="32" height="32"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    森澤@情報処理室</span>
+                  {% elif item.operator == 2 %}
+                  <img src="{% static 'book/img/poke.gif' %}" alt="poke" width="28" height="28" id="{{ item.id }}"><span
+                    class="fs-65" id="{{ item.id }}"> 今野</span>
+                  {% elif item.operator == 3 %}
+                  <img src="{% static 'book/img/dommune.gif' %}" alt="dommune" width="28" height="28"
+                    id="{{ item.id }}"><span class="fs-65" id="{{ item.id }}">
+                    yamamura</span>
+                  {% endif %}
+                </div>
+                <div class="text-right" id="{{ item.id }}">
+                  {% if item.percent == 0 %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}%</small>
+                  {% else %}
+                  <small class="text-muted mb-1 d-inline-block" id="{{ item.percent }}">{{ item.percent }}0%</small>
+                  {% endif %}
+                </div>
+                <div class="progress" style="height: 5px;" id="{{ item.id }}">
+                  <div class="progress-bar" role="progressbar" style="width: {{ item.percent }}0%;" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100" id="{{ item.id }}"></div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!-- End task -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- End lane -->
+
+
+  </div>
+</div>
+
+<!-- Create Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">新規追加</h1>
+      </div>
+      <div class="modal-body px-sm-5">
+        <div class="row">
+          <div class="mx-auto">
+            <div class="row">
+              <div class="col-sm-12 justify-content-center mb-3" style="display:flex;">
+                <div class="form-check" style="margin-right: 5%;">
+                  <input type="checkbox" name="media" value="1" class="form-check-input" id="check_media1" checked />
+                  <label class="form-check-label" for="same-address">医書JP</label>
+                </div>
+                <div class="form-check" style="margin-right: 5%;">
+                  <input type="checkbox" name="media" value="2" class="form-check-input" id="check_media2" />
+                  <label class="form-check-label" for="save-info">J-STAGE</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" name="media" value="3" class="form-check-input" id="check_media3" />
+                  <label class="form-check-label" for="save-info">旧Medical Finder</label>
+                </div>
+              </div>
+
+              <div class="col-sm-12 mt-2">
+                <label for="firstName" class="form-label">タイトル</label>
+                <input type="text" class="form-control form-control-sm" id="title" name="title" placeholder=""
+                  aria-describedby="validationServer04Feedback" required />
+                <div class="invalid-feedback">
+                  タイトルは必須項目です
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-md-6 mt-4 mb-2">
+                  <label for="formFileSm" class="form-label">作業段階</label>
+                  <select id="stage" class="form-select form-select-sm col-12" name="stage"
+                    aria-label=".form-select-sm example">
+                    <option value="1">下版予定</option>
+                    <option value="2">下版済み</option>
+                    <option value="3">作業中</option>
+                    <option value="4">最終確認中</option>
+                    <option value="5">作業完了</option>
+                  </select>
+                </div>
+                <div class="col col-md-6 mt-4">
+                  <label for="formFileSm" class="form-label">ステータス</label>
+                  <select id="status" class="form-select form-select-sm col-12" name="status"
+                    aria-label="form-select-sm example">
+                    <option value="99"> </option>
+                    <option value="1">下版作業中</option>
+                    <option value="2">PDF待ち</option>
+                    <option value="3">PDF作成済み</option>
+                    <option value="4">先方確認中</option>
+                    <option value="5">三協美術に依頼</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col col-sm-6 mb-4 mt-3">
+                  <label for="formFileSm" class="form-label">作業者</label>
+                  <select id="operator" class="form-select form-select-sm col-12" name="operator"
+                    aria-label=".form-select-sm example">
+                    <option value="99" selected></option>
+                    <option value="1">森澤@情報処理室</option>
+                    <option value="2">今野</option>
+                    <option value="3">山村</option>
+                  </select>
+                </div>
+                <div class="col col-sm-4 mb-4 mt-3">
+                  <label for="firstName" class="form-label">進捗</label>
+                  <div class="input-group">
+                    <select class="form-select form-select-sm col-12" name="percent" id="percent">
+                      <option value="0" selected>0</option>
+                      <option value="1">10</option>
+                      <option value="2">20</option>
+                      <option value="3">30</option>
+                      <option value="4">40</option>
+                      <option value="5">50</option>
+                      <option value="6">60</option>
+                      <option value="7">70</option>
+                      <option value="8">80</option>
+                      <option value="9">90</option>
+                      <option value="10">100</option>
+                    </select>
+                    <span class="input-group-text">％</span>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-sm-3 mt-2">
+                  <label for="firstName" class="form-label">期日</label>
+
+                  <select class="form-select form-select-sm" name="year" id="year" disabled='true'>
+                    <option value="2026">2026年</option>
+                  </select>
+                </div>
+                <div class="col col-sm-3 mt-2">
+                  <label for="firstName" class="form-label">月</label>
+
+                  <select class="form-select form-select-sm" name="month" id="month">
+                    <option value="01" selected>1月</option>
+                    <option value="02">2月</option>
+                    <option value="03">3月</option>
+                    <option value="04">4月</option>
+                    <option value="05">5月</option>
+                    <option value="06">6月</option>
+                    <option value="07">7月</option>
+                    <option value="08">8月</option>
+                    <option value="09">9月</option>
+                    <option value="10">10月</option>
+                    <option value="11">11月</option>
+                    <option value="12">12月</option>
+                  </select>
+                </div>
+                <div class="col col-sm-3 mt-2">
+                  <label for="firstName" class="form-label">日</label>
+
+                  <select class="form-select form-select-sm" name="day" id="day">
+                    <option value="" selected>-</option>
+                    <option value="01">1日</option>
+                    <option value="02">2日</option>
+                    <option value="03">3日</option>
+                    <option value="04">4日</option>
+                    <option value="05">5日</option>
+                    <option value="06">6日</option>
+                    <option value="07">7日</option>
+                    <option value="08">8日</option>
+                    <option value="09">9日</option>
+                    <option value="10">10日</option>
+                    <option value="11">11日</option>
+                    <option value="12">12日</option>
+                    <option value="13">13日</option>
+                    <option value="14">14日</option>
+                    <option value="15">15日</option>
+                    <option value="16">16日</option>
+                    <option value="17">17日</option>
+                    <option value="18">18日</option>
+                    <option value="19">19日</option>
+                    <option value="20">20日</option>
+                    <option value="21">21日</option>
+                    <option value="22">22日</option>
+                    <option value="23">23日</option>
+                    <option value="24">24日</option>
+                    <option value="25">25日</option>
+                    <option value="26">26日</option>
+                    <option value="27">27日</option>
+                    <option value="28">28日</option>
+                    <option value="29">29日</option>
+                    <option value="30">30日</option>
+                    <option value="31">31日</option>
+                  </select>
+                </div>
+
+                <div class="col col-sm-3 mt-2">
+                  <label for="country" class="form-label">予定工数</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control form-control-sm w-60" id="estimated_hours"
+                      name="estimated_hours">
+                    <span class="input-group-text">時間</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label mt-4">コメント</label>
+                <textarea class="form-control form-control-sm" name="comment" id="comment" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-6 offset-md-6">
+              <label for="validationServer04" class="form-label">作成者</label>
+              <select id="created_user" class="form-select form-select-sm col-12" name="created_user"
+                aria-label="form-select-sm example" aria-describedby="validationServer04Feedback" required>
+                <option value="99"></option>
+                <option value="3" {% if user.id == 3 %} selected {% endif %}>森澤@情報処理室</option>
+                <option value="4" {% if user.id == 4 %} selected {% endif %}>今野</option>
+                <option value="1" {% if user.id == 1 %} selected {% endif %}>yamamura</option>
+              </select>
+              <div id="validationServer04Feedback" class="invalid-feedback">
+                作成者を選択してください.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" id="close_btn" class="btn btn-secondary w-25" data-bs-dismiss="modal">閉じる</button>
+        <button type="button" class="btn btn-primary ms-4 w-25" onclick="createDoneModal()">登　録</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 登録完了モーダル -->
+<div class="modal fade" id="createDoneModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createDoneModal"
+  aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="">登録完了</h1>
+        <button type="button" class="btn-close" onclick="windowReload()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row py-lg-5">
+          <div class="mx-auto">
+            <p class="lead text-body-secondary text-center"><span id="create_confirm_title"
+                class="col-9 fw-semibold"></span>の登録が完了しました。</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer gap-3 justify-content-center">
+        <button type="button" class="btn btn-primary w-25" onclick="windowReload()">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h1 class="modal-title fs-5" id="detail_title"><span id="detail_type"></span><span id="detail_title"></span>
+        </h1>
+      </div>
+      <div class="modal-body px-sm-5">
+        <div class="row">
+          <div class="mx-auto">
+            <div class="row">
+              <div class="row">
+                <div class="col col-md-6 mt-2 mb-2">
+                  <label for="formFileSm" class="form-label">作業段階</label>
+                  <select id="detail_stage" class="form-select form-select-sm col-12" name="stage"
+                    aria-label=".form-select-sm edit">
+                    <option value="1">下版予定</option>
+                    <option value="2">下版済み</option>
+                    <option value="3">作業中</option>
+                    <option value="4">最終確認中</option>
+                    <option value="5">作業完了</option>
+                  </select>
+                </div>
+                <div class="col col-md-6 mt-2">
+                  <label for="formFileSm" class="form-label">ステータス</label>
+                  <select id="detail_status" class="form-select form-select-sm col-12" name="status"
+                    aria-label="form-select-sm edit">
+                    <option value="99"> </option>
+                    <option value="1">下版作業中</option>
+                    <option value="2">PDF待ち</option>
+                    <option value="3">PDF作成済み</option>
+                    <option value="4">先方確認中</option>
+                    <option value="5">三協美術に依頼</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col col-sm-6 mb-4 mt-3">
+                  <label for="formFileSm" class="form-label">作業者</label>
+                  <select id="detail_operator" class="form-select form-select-sm col-12" name="operator"
+                    aria-label=".form-select-sm edit">
+                    <option value="99"></option>
+                    <option value="1">森澤@情報処理室</option>
+                    <option value="2">今野</option>
+                    <option value="3">山村</option>
+                  </select>
+                </div>
+                <div class="col col-sm-4 mb-4 mt-3">
+                  <label for="firstName" class="form-label">進捗</label>
+                  <div class="input-group">
+                    <select class="form-select form-select-sm col-12" name="percent" id="detail_percent">
+                      <option value="0" selected>0</option>
+                      <option value="1">10</option>
+                      <option value="2">20</option>
+                      <option value="3">30</option>
+                      <option value="4">40</option>
+                      <option value="5">50</option>
+                      <option value="6">60</option>
+                      <option value="7">70</option>
+                      <option value="8">80</option>
+                      <option value="9">90</option>
+                      <option value="10">100</option>
+                    </select>
+                    <span class="input-group-text">％</span>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-sm-6">
+                  <label for="firstName" class="form-label">期日：</label>
+
+                  <label for="firstName" class="form-label"><span id="detail_year"></span>年</label>
+                  <label for="firstName" class="form-label"><span id="detail_month"></span>月</label>
+
+                  <label for="firstName" class="form-label"><span id="detail_day"></span>日</label>
+                </div>
+
+                <div class="col col-sm-6">
+                  <label for="country" class="form-label">予定工数：</label>
+                  <label for="firstName" class="form-label"><span id="detail_estimated_hours"></span></label>
+
+                  <label for="firstName" class="form-label"><span id="detail_month"></span>時間</label>
+
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="editFormControlTextarea1" class="form-label mt-3">コメント</label>
+                <textarea class="form-control form-control-sm" name="comment" id="detail_comment" rows="3"></textarea>
+              </div>
+            </div>
+            <div id='updated_user_id' hidden>{{user.id}}</div>
+
+            <div id="update_zone" class="row mt-4">
+              <div class="col col-sm-6">
+                <label for="formFileSm" class="form-label">更新者：</label><span id="detail_updated_user"></span>
+              </div>
+              <div class="col col-sm-6">
+                <p>更新日：<span id="detail_update-date"></span></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-sm-6">
+                <label for="formFileSm" class="form-label">作成者：</label><span id="detail_created_user"></span>
+              </div>
+              <div class="col col-sm-6">
+                <p>作成日：<span id="detail_create-date"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger w-25" data-bs-toggle="modal" data-bs-target="#delModal"
+          onclick="deleteModal()">削除</button>
+        <button type="button" class="btn btn-primary w-25 ms-4" data-bs-dismiss="modal" onclick="">保存 / 閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="underConstruction">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">開発中です</h5>
+      </div>
+      <div class="modal-body">
+        <p>Currently under construction.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 削除モーダル -->
+<div class="modal fade" id="delModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="delModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="delModalLabel">以下のデータを削除しますか？ </h1>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <p class="col-2 ps-3">タイトル：</p>
+          <p id="delete_confirm_title" class="col-9 fw-semibold"></p>
+
+        </div>
+        <div class="modal-footer gap-3 justify-content-center">
+
+          <button type="button" data-bs-toggle="modal" class="btn btn-danger w-25" 
+            data-bs-target="#deleteDoneModal" onclick="deleteDoneModal()">削　除</button>
+          <button type="button" class="btn btn-primary w-25" data-bs-toggle="modal"
+            data-bs-target="#editModal">いいえ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 削除完了モーダル -->
+<div class="modal fade" id="deleteDoneModal" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="deleteDoneModalLabel" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteDoneModalLabel">削除完了</h1>
+        <button type="button" class="btn-close" onclick="windowReload()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row py-lg-5">
+          <div class="mx-auto">
+            <p class="lead text-body-secondary text-center">削除が完了しました。</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer gap-3 justify-content-center">
+        <button type="button" class="btn btn-primary w-25" onclick="windowReload()">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>{{ object_list|json_script:"my-data-id" }}
+
+<script>
+
+  // JSON.parse を使ってデータを安全に取得
+  const data = JSON.parse(document.getElementById('my-data-id').textContent);
+  console.log("data");
+
+  console.log(data);
+
+
+
+
+</script>
+{% endblock content %}

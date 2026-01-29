@@ -1,0 +1,677 @@
+{% load static %}
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>情報処理室 タスク管理画面</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'book/css/bootstrap.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'book/css/dragula.css' %}">
+  <script src="{% static 'book/js/jquery-3.7.1.min.js' %}"></script>
+  <script src="{% static 'book/js/dragula.js' %}"></script>
+  <link href="{% static 'book/css/sign-in.css' %}" rel="stylesheet">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+      --bd-violet-bg: #d4c4f5;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #a88ae4;
+      --bs-btn-hover-border-color: #a88ae4;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #a88ae4;
+      --bs-btn-active-border-color: #a88ae4;
+    }
+
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+  </style>
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check2" viewBox="0 0 16 16">
+      <path
+        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+    </symbol>
+    <symbol id="circle-half" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+    </symbol>
+    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+      <path
+        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+      <path
+        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+    </symbol>
+    <symbol id="sun-fill" viewBox="0 0 16 16">
+      <path
+        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+    </symbol>
+  </svg>
+  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
+      aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+      <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+        <use href="#circle-half"></use>
+      </svg>
+      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+      <li>
+        <button type="button" id="btn-light" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+          aria-pressed="false">
+          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+            <use href="#sun-fill"></use>
+          </svg>
+          Light
+          <svg class="bi ms-auto d-none" width="1em" height="1em">
+            <use href="#check2"></use>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" id="btn-dark" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
+          aria-pressed="false">
+          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+            <use href="#moon-stars-fill"></use>
+          </svg>
+          Dark
+          <svg class="bi ms-auto d-none" width="1em" height="1em">
+            <use href="#check2"></use>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
+          aria-pressed="true">
+          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+            <use href="#circle-half"></use>
+          </svg>
+          Auto
+          <svg class="bi ms-auto d-none" width="1em" height="1em">
+            <use href="#check2"></use>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="navbar-nav d-flex flex-row ms-5">
+      <a class="navbar-brand" href="https://www.sanposha.co.jp/index.html">
+        <img src="{% static 'book/img/sanposha_logo.png' %}" alt="Logo" class="d-inline-block align-text-top">
+      </a>
+    </div>
+
+    <!-- 狭い画面用：ハンバーガーボタン (ここがポイント) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="d-flex flex-row ms-auto">
+        <ul class="navbar-nav me-6">
+          <li class="nav-item me-5 mt-1">
+            <button class="btn btn-outline-dark text-body" onclick="javascript:OnLinkClick();">＋ 新規追加</button>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {% if user.id == 3 %}
+                <img src="{% static 'book/img/warai.gif' %}" alt=" ユーザー" class="rounded-circle" width="45" height="45">
+                {% elif user.id == 4 %}
+                <img src="{% static 'book/img/poke.gif' %}" alt=" ユーザー" class="rounded-circle" width="45" height="45">
+                {% elif user.id == 1 %}
+                <img src="{% static 'book/img/dommune.gif' %}" alt=" ユーザー" class="rounded-circle" width="45"
+                  height="45">
+                {% endif %}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="javascript:void(0);" onclick="underConstruction()">パスワード変更</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"
+                    onclick="document.getElementById('logOutForm').submit(); return false;">ログアウト</a></li>
+
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <form action="{% url 'accounts:logout' %}" method="post" id="logOutForm">
+    {% csrf_token %}
+  </form>
+
+  <div class="p-4 mb-auto">
+    {% block content %}{% endblock content %}
+
+
+
+  </div>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="navbar-nav d-flex flex-row py-4">
+    </div>
+  </nav>
+
+
+
+
+
+
+  <script>
+    dragula([
+      document.querySelector('#backlog'),
+      document.querySelector('#prepare'),
+      document.querySelector('#progress'),
+      document.querySelector('#check'),
+      document.querySelector('#completed')
+    ]);
+  </script>
+  <script src="{% static 'book/js/popper.js' %}"></script>
+
+  <script>
+
+    let js_array = '';
+    let task_name;
+
+    function isSingleDigit(val) {
+      const n = Number(val);
+      return Number.isInteger(n) && n >= 0 && n <= 9;
+    }
+    const now = new Date();
+
+    // 年、月、日を取得
+    const year_today = now.getFullYear(); // 西暦4桁
+    const month_today = now.getMonth() + 1; // 月 (0-11のため+1する) [12]
+    const date_today = now.getDate(); // 日
+
+    var reset_month;
+    if (isSingleDigit(month_today)) {
+      reset_month = String(month_today).padStart(2, '0');
+    } else {
+      reset_month = month_today;
+    }
+    $('#month').val(reset_month);
+    var reset_date;
+    if (isSingleDigit(date_today)) {
+      reset_date = String(date_today).padStart(2, '0');
+    } else {
+      reset_date = date_today;
+    }
+    $('#day').val(reset_date);
+
+
+    // CSRFトークンを取得するヘルパー関数
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+
+    function createDoneModal() {
+
+      console.log('登録処理スタート！！');
+
+      const checkedMedia = $('.form-check-input:checked').map(function () {
+        return $(this).val(); // 各チェックボックスのvalueを配列に格納
+      })
+      var type_id = checkedMedia[0];
+      console.log(type_id);
+
+
+      if (type_id == 1) {
+        detail_type = '【医書JP】';
+      } else if (type_id == 2) {
+        detail_type = '【J-STAGE】';
+      } else if (type_id == 3) {
+        detail_type = '【旧Medical Finder】';
+      }
+
+      task_name = $("#title").val();
+
+      if (!task_name) {
+        $("#title").addClass("is-invalid");
+        return;
+      }
+      if (task_name.match(/医書/i) || task_name.match(/STAGE/i) || task_name.match(/Medical/i)) {
+        create_confirm_title = task_name;
+      } else {
+        create_confirm_title = detail_type + ' ' + task_name;
+      }
+
+      var stage = $("#stage").val();
+      console.log(stage);
+      var status = $("#status").val();
+      console.log(status);
+      var operator = $("#operator").val();
+      console.log(operator);
+      var percent = $("#percent").val();
+      console.log(percent);
+
+      var year = $("#year").val();
+      console.log(year);
+      var month = $("#month").val();
+      console.log(month);
+      var day = $("#day").val();
+      console.log(day);
+      var due_date = year + month + day;
+      var estimated_hours = $("#estimated_hours").val();
+      console.log(estimated_hours);
+      var comment = $("#comment").val();
+      console.log(comment);
+      var created_user = $("#created_user").val();
+      console.log("created_user");
+      console.log(created_user);
+
+      if (created_user == '99') {
+        $("#created_user").addClass("is-invalid");
+        return;
+      }
+      var data_obj = {
+        type: type_id,
+        title: create_confirm_title,
+        stage: stage,
+        status: status,
+        operator: operator,
+        percent: percent,
+        due_date: due_date,
+        estimated_hours: estimated_hours,
+        comment: comment,
+        created_user: created_user
+      };
+
+
+      fetch('/save-data/', { // 第1引数に送り先
+        method: 'POST', // メソッド指定
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken') // クッキーからCSRFトークンを取得
+        }, // jsonを指定
+        body: JSON.stringify(data_obj) // json形式に変換して添付
+      })
+
+        .catch(error => { // ④ エラー処理
+          console.error('Error:', error);
+        });
+      $("#create_confirm_title").text(create_confirm_title);
+
+      // モーダルのDOM要素を取得
+      const exampleModal = document.getElementById('exampleModal');
+      // インスタンスを取得して閉じる
+      const exampleModalInstance = bootstrap.Modal.getInstance(exampleModal);
+      if (exampleModalInstance) {
+        exampleModalInstance.hide();
+      }
+      const createDoneModal = new bootstrap.Modal(document.getElementById('createDoneModal'));
+      createDoneModal.show();
+
+
+    }
+
+    function windowReload() {
+      window.location.reload();
+    }
+
+    let create_confirm_title;
+    let delete_confirm_title;
+    let detail_result;
+    // 詳細モーダル表示処理
+    const detailModal = document.getElementsByClassName("detail-modal");
+    const detailModals = Array.from(detailModal);
+
+    detailModals.forEach(function (detailModal) {
+      detailModal.addEventListener("dblclick", () => {
+        var recipient = detailModal.dataset.index;
+
+
+        detail_result = data.find(({
+          id
+        }) => id == recipient);
+
+        var updated_user_name = '';
+        var updated_user_id = $('#updated_user_id').text();
+
+        if (updated_user_id == 3) {
+          updated_user_name = '森澤@情報処理室';
+        } else if (updated_user_id == 4) {
+          updated_user_name = '今野';
+        } else if (updated_user_id == 1 || updated_user_id == 2) {
+          updated_user_name = 'yamamura';
+        }
+        $("#detail_updated_user").text(updated_user_name);
+
+        var date = detail_result.due_date;
+        if (date != undefined || date != null) {
+          var year = date.substring(0, 4);
+          let month_date = date.replace(year, "");
+          var month = month_date.substring(0, 2);
+          month = month.replace(/^0+/, '');
+
+          var daytime = month_date.replace(month, "");
+          daytime = daytime.replace(/^0+/, '');
+
+        }
+
+
+        var detail_type = '';
+        if (detail_result.type == 1) {
+          detail_type = '【医書JP】';
+        } else if (detail_result.type == 2) {
+          detail_type = '【J-STAGE】';
+        } else if (detail_result.type == 3) {
+          detail_type = '【旧Medical Finder】';
+        }
+
+        if (detail_result.title.match(/医書/i) || detail_result.title.match(/STAGE/i) || detail_result.title.match(/Medical/i)) {
+
+          $("#detail_type").text('');
+          delete_confirm_title = detail_result.title;
+        } else {
+
+          $("#detail_type").text(detail_type);
+          delete_confirm_title = detail_type + '　' + detail_result.title;
+          detail_result.title = detail_type + '　' + detail_result.title;
+        }
+
+        $('#detail_title').text(detail_result.title);
+
+        $('#detail_title').text(detail_result.title);
+        $('#detail_stage').val(detail_result.stage);
+        $('#detail_status').val(detail_result.status);
+
+        $('#detail_operator').val(detail_result.operator);
+        $('#detail_percent').val(detail_result.percent);
+
+        $('#detail_year').text(year);
+
+        if (month) {
+          $('#detail_month').text(month);
+        } else {
+          $('#detail_month').text('--');
+        }
+
+        if (daytime) {
+          $('#detail_day').text(daytime);
+        } else {
+          $('#detail_day').text('--');
+        }
+
+        if (detail_result.estimated_hours) {
+          $('#detail_estimated_hours').text(detail_result.estimated_hours);
+        } else {
+          $('#detail_estimated_hours').text('--');
+        }
+
+        detail_result.created = formatDate(detail_result.created);
+        detail_result.updated = formatDate(detail_result.updated);
+
+        $('#detail_create-date').text(detail_result.created);
+
+        console.log("detail_result.updated_user");
+        console.log(detail_result.updated_user);
+        if (detail_result.updated_user) {
+          $('#detail_update-date').text(detail_result.updated);
+          $("#detail_updated_user").val(detail_result.updated_user);
+        } else {
+          document.getElementById("update_zone").style.display = "none";
+        }
+
+
+        $("#detail_comment").val(detail_result.comment);
+
+        var created_user = '';
+        if (detail_result.created_user == 3) {
+          created_user = '森澤@情報処理室';
+        } else if (detail_result.created_user == 4) {
+          created_user = '今野';
+        } else if (detail_result.created_user == 1) {
+          created_user = 'yamamura';
+        }
+        $("#detail_created_user").text(created_user);
+        const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        editModal.show();
+
+      });
+
+    });
+
+    editModal.addEventListener('hidden.bs.modal', event => {
+      // ここに実行したい処理を記述
+      modal_close();
+
+    });
+
+
+    function formatDate(date_ISO8601) {
+      let dateObj = new Date(date_ISO8601);
+      let formattedDate = dateObj.toLocaleString('ja-JP', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false // 24時間表示
+      }).replace(/\//g, '-'); // ハイフン区切りにしたい場合
+      return formattedDate
+    }
+    function modal_close() {
+      console.log('editモーダルを閉じる！！！');
+      setTimeout(() => {
+        if ($('#delModal').hasClass('show')) {
+          console.log('delモーダルは開いています');
+          return;
+        } else {
+          console.log('delモーダルは閉じています');
+        }
+        var stage = $('#detail_stage').val();
+        var status = $('#detail_status').val();
+        var operator = $('#detail_operator').val();
+        var percent = $('#detail_percent').val();
+        var comment = $('#detail_comment').val();
+        var updated_user = $('#updated_user_id').text();
+        if (detail_result.stage != stage || detail_result.status != status || detail_result.operator != operator || detail_result.percent != percent || detail_result.comment != comment) {
+          console.log('変更されました！！');
+
+          var data_obj = {
+            id: detail_result.id,
+            stage: stage,
+            status: status,
+            operator: operator,
+            percent: percent,
+            comment: comment,
+            updated_user: updated_user
+          };
+
+          fetch('/edit-data/', { // 第1引数に送り先
+            method: 'POST', // メソッド指定
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': getCookie('csrftoken') // クッキーからCSRFトークンを取得
+            }, // jsonを指定
+            body: JSON.stringify(data_obj) // json形式に変換して添付
+          })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => { // ④ エラー処理
+              console.error('Error:', error);
+            });
+          setTimeout(() => {
+            window.location.reload();
+          }, 300);
+        }
+      }, 300);
+
+    }
+
+    $(function () {
+      $('input[name="media"]').on('click', function () {
+        if ($(this).prop('checked')) {
+          $('input[name="media"]').prop('checked', false);
+          $(this).prop('checked', true);
+        }
+      });
+    });
+
+    var exampleModal = document.getElementById('exampleModal');
+    exampleModal.addEventListener('hidden.bs.modal', function (event) {
+      // ここに実行したい処理を記述
+      console.log('新規追加モーダルが閉じました');
+
+      $("#title").removeClass("is-invalid");
+      $("#created_user").removeClass("is-invalid");
+      var checkbox1 = document.getElementById('check_media1');
+      var checkbox2 = document.getElementById('check_media2');
+      var checkbox3 = document.getElementById('check_media3');
+      checkbox1.checked = true;
+      checkbox2.checked = false;
+      checkbox3.checked = false;
+      $('#title').val('');
+      $('#stage').val(1);
+      $('#status').val(99);
+      $('#operator').val(99);
+      $('#percent').val(0);
+      $('#percent').val(0);
+
+      var reset_month;
+      if (isSingleDigit(month_today)) {
+        reset_month = String(month_today).padStart(2, '0');
+      } else {
+        reset_month = month_today;
+      }
+      $('#month').val(reset_month);
+      var reset_date;
+      if (isSingleDigit(date_today)) {
+        reset_date = String(date_today).padStart(2, '0');
+      } else {
+        reset_date = date_today;
+      }
+      $('#day').val(reset_date);
+
+      $('#estimated_hours').val('');
+      $('#comment').val('');
+      $('#created_user').val(99);
+    });
+
+    function deleteModal() {
+      $('#delete_confirm_title').text(delete_confirm_title);
+      console.log(detail_result.id);
+    }
+
+    function deleteDoneModal() {
+      $('#delete_confirm_title').text(delete_confirm_title);
+      console.log(detail_result.id);
+
+      var data_obj = {
+        id: detail_result.id
+      };
+      fetch('/delete/', { // 第1引数に送り先
+        method: 'POST', // メソッド指定
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken') // クッキーからCSRFトークンを取得
+        }, // jsonを指定
+        body: JSON.stringify(data_obj) // json形式に変換して添付
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => { // ④ エラー処理
+          console.error('Error:', error);
+        });
+
+      setTimeout(() => {
+        windowReload()
+      }, 250);
+    }
+
+    function underConstruction() {
+      const underConstruction = new bootstrap.Modal(document.getElementById('underConstruction'));
+      underConstruction.show();
+    }
+    function OnLinkClick() {
+      const exampleModalOpen = new bootstrap.Modal(document.getElementById('exampleModal'));
+      exampleModalOpen.show();
+    }
+  </script>
+  <script src="{% static 'book/js/bootstrap.bundle.min.js' %}" class="astro-vvvwv3sm"></script>
+  <script src="{% static 'book/js/theme-script.js' %}"></script>
+
+</body>
+
+</html>

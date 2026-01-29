@@ -1,0 +1,1095 @@
+{% extends 'base.html' %}
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+
+    <!-- Start lane -->
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header bg-light">
+          <h3 class="card-title h5 mb-1 text-center">
+            下版予定
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="backlog">
+            <!-- Start task -->
+
+            <div id="" data-index="" class="card mb-3 cursor-grab detail-modal">
+              <div class="card-body" id="">
+
+                <span id="" class="badge bg-primary text-white mb-2">下版作業中</span>
+
+                <span id="" class="badge bg-warning text-black mb-2">PDF待ち</span>
+
+                <span id="" class="badge bg-danger text-white mb-2">PDF作成済み</span>
+
+                <span id="" class="badge bg-info text-white mb-2">先方確認中</span>
+
+                <span id="" class="badge bg-success text-white mb-2">三協美術に依頼</span>
+
+                <p id="" class="mb-0 backlog-card"></p>
+
+                <div class="b_right" id="">
+
+                  <img src="img/warai.gif" alt="warai" width="32" height="32" id=""><span class="fs-65" id="">
+                    森澤@情報処理室</span>
+
+                  <img src="img/poke.gif" alt="poke" width="28" height="28" id=""><span class="fs-65" id=""> 今野</span>
+
+                  <img src="img/dommune.gif" alt="dommune" width="28" height="28" id=""><span class="fs-65" id="">
+                    yamamura</span>
+
+                </div>
+                <div class="text-right">
+
+                  <small class="text-muted mb-1 d-inline-block" id="">%</small>
+
+                  <small class="text-muted mb-1 d-inline-block" id="">0%</small>
+
+                </div>
+                <div class="progress" style="height: 5px;" id="">
+                  <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100" id=""></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- End task -->
+          </div>
+
+          <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            ＋ 新規追加
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- End lane -->
+    <!-- 矢印を配置するコンテナ -->
+    <div class="col-auto arrow-container d-none d-sm-block mt-4">
+      <div class="arrow-right"></div>
+    </div>
+    <!-- Start lane -->
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header bg-light">
+          <h3 class="card-title h5 mb-1 text-center">
+            下版済み
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="prepare">
+            <!-- Start task -->
+
+            <div id="" data-index="" class="card mb-3 cursor-grab detail-modal">
+              <div id="" class="card-body">
+
+                <span id="" class="badge bg-primary text-white mb-2">下版作業中</span>
+
+                <span id="" class="badge bg-warning text-black mb-2">PDF待ち</span>
+
+                <span id="" class="badge bg-danger text-white mb-2">PDF作成済み</span>
+
+                <span id="" class="badge bg-info text-white mb-2">先方確認中</span>
+
+                <span id="" class="badge bg-success text-white mb-2">三協美術に依頼</span>
+
+                <p id="" class="mb-0 backlog-card"></p>
+
+                <div id="" class="b_right">
+
+                  <img src="img/warai.gif" alt="warai" width="32" height="32" id=""><span class="fs-65" id="">
+                    森澤@情報処理室</span>
+
+                  <img src="img/poke.gif" alt="poke" width="28" height="28" id=""><span class="fs-65" id=""> 今野</span>
+
+                  <img src="img/dommune.gif" alt="dommune" width="28" height="28" id=""><span class="fs-65" id="">
+                    yamamura</span>
+
+                </div>
+                <div id="" class="text-right">
+
+                  <small class="text-muted mb-1 d-inline-block" id="">%</small>
+
+                  <small class="text-muted mb-1 d-inline-block" id="">0%</small>
+
+                </div>
+                <div id="" class="progress" style="height: 5px;">
+                  <div id="" class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- End task -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End lane -->
+    <!-- 矢印を配置するコンテナ -->
+    <div class="col-auto arrow-container d-none d-sm-block mt-4">
+      <div class="arrow-right"></div>
+    </div>
+    <!-- Start lane -->
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header bg-light">
+          <h3 class="card-title h5 mb-1 text-center">
+            作業中
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="progress">
+
+            <!-- Start task -->
+
+            <div id="" data-index="" class="card mb-3 cursor-grab detail-modal">
+              <div class="card-body" id="">
+
+                <span id="" class="badge bg-primary text-white mb-2">下版作業中</span>
+
+                <span id="" class="badge bg-warning text-black mb-2">PDF待ち</span>
+
+                <span id="" class="badge bg-danger text-white mb-2">PDF作成済み</span>
+
+                <span id="" class="badge bg-info text-white mb-2">先方確認中</span>
+
+                <span id="" class="badge bg-success text-white mb-2">三協美術に依頼</span>
+
+                <p id="" class="mb-0 backlog-card"></p>
+
+                <div class="b_right" id="">
+
+                  <img src="img/warai.gif" alt="warai" width="32" height="32" id=""><span class="fs-65" id="">
+                    森澤@情報処理室</span>
+
+                  <img src="img/poke.gif" alt="poke" width="28" height="28" id=""><span class="fs-65" id=""> 今野</span>
+
+                  <img src="img/dommune.gif" alt="dommune" width="28" height="28" id=""><span class="fs-65" id="">
+                    yamamura</span>
+
+                </div>
+                <div class="text-right">
+
+                  <small class="text-muted mb-1 d-inline-block" id="">%</small>
+
+                  <small class="text-muted mb-1 d-inline-block" id="">0%</small>
+
+                </div>
+                <div class="progress" style="height: 5px;" id="">
+                  <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100" id=""></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- End task -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End lane -->
+    <!-- 矢印を配置するコンテナ -->
+    <div class="col-auto arrow-container d-none d-sm-block mt-4">
+      <div class="arrow-right"></div>
+    </div>
+    <!-- Start lane -->
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header bg-light">
+          <h3 class="card-title h5 mb-1 text-center">
+            最終確認中
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="check">
+            <!-- Start task -->
+
+            <div id="" data-index="" class="card mb-3 cursor-grab detail-modal">
+              <div class="card-body" id="">
+
+                <span id="" class="badge bg-primary text-white mb-2">下版作業中</span>
+
+                <span id="" class="badge bg-warning text-black mb-2">PDF待ち</span>
+
+                <span id="" class="badge bg-danger text-white mb-2">PDF作成済み</span>
+
+                <span id="" class="badge bg-info text-white mb-2">先方確認中</span>
+
+                <span id="" class="badge bg-success text-white mb-2">三協美術に依頼</span>
+
+                <p id="" class="mb-0 backlog-card"></p>
+
+                <div class="b_right" id="">
+
+                  <img src="img/warai.gif" alt="warai" width="32" height="32" id=""><span class="fs-65" id="">
+                    森澤@情報処理室</span>
+
+                  <img src="img/poke.gif" alt="poke" width="28" height="28" id=""><span class="fs-65" id=""> 今野</span>
+
+                  <img src="img/dommune.gif" alt="dommune" width="28" height="28" id=""><span class="fs-65" id="">
+                    yamamura</span>
+
+                </div>
+                <div class="text-right">
+
+                  <small class="text-muted mb-1 d-inline-block" id="">%</small>
+
+                  <small class="text-muted mb-1 d-inline-block" id="">0%</small>
+
+                </div>
+                <div class="progress" style="height: 5px;" id="">
+                  <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100" id=""></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- End task -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End lane -->
+    <!-- 矢印を配置するコンテナ -->
+    <div class="col-auto arrow-container d-none d-sm-block mt-4">
+      <div class="arrow-right"></div>
+    </div>
+    <!-- Start lane -->
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <div class="card mb-3">
+        <div class="card-header bg-light">
+          <h3 class="card-title h5 mb-1 text-center">
+            作業完了
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="tasks" id="completed">
+            <!-- Start task -->
+
+            <div id="" data-index="" class="card mb-3 cursor-grab detail-modal">
+              <div class="card-body" id="">
+
+                <span class="badge bg-primary text-white mb-2" id="">下版作業中</span>
+
+                <span class="badge bg-danger text-white mb-2" id="">PDF待ち</span>
+
+                <span class="badge bg-danger text-white mb-2" id="">PDF作成済み</span>
+
+                <span class="badge bg-info text-white mb-2" id="">先方確認中</span>
+
+                <span class="badge bg-success text-white mb-2" id="">三協美術に依頼</span>
+
+                <p id="" class="mb-0 backlog-card"></p>
+
+                <div class="b_right" id="">
+
+                  <img src="img/warai.gif" alt="warai" width="32" height="32" id=""><span class="fs-65" id="">
+                    森澤@情報処理室</span>
+
+                  <img src="img/poke.gif" alt="poke" width="28" height="28" id=""><span class="fs-65" id=""> 今野</span>
+
+                  <img src="img/dommune.gif" alt="dommune" width="28" height="28" id=""><span class="fs-65" id="">
+                    yamamura</span>
+
+                </div>
+                <div class="text-right">
+                  <small class="text-muted mb-1 d-inline-block" id="">0%</small>
+                </div>
+                <div class="progress" style="height: 5px;" id="">
+                  <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100" id=""></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- End task -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End lane -->
+
+  </div>
+
+
+
+</div>
+
+<!-- Create Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">新規追加</h1>
+      </div>
+      <div class="modal-body px-sm-5">
+        <div class="row">
+          <div class="mx-auto">
+            <div class="row">
+              <div class="col-sm-12 justify-content-center mb-3" style="display:flex;">
+                <div class="form-check" style="margin-right: 5%;">
+                  <input type="checkbox" name="media" value="1" class="form-check-input" id="check_media1" checked />
+                  <label class="form-check-label" for="same-address">医書JP</label>
+                </div>
+                <div class="form-check" style="margin-right: 5%;">
+                  <input type="checkbox" name="media" value="2" class="form-check-input" id="check_media2" />
+                  <label class="form-check-label" for="save-info">J-STAGE</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" name="media" value="3" class="form-check-input" id="check_media3" />
+                  <label class="form-check-label" for="save-info">旧Medical Finder</label>
+                </div>
+              </div>
+
+              <div class="col-sm-12 mt-2">
+                <label for="firstName" class="form-label">タイトル</label>
+                <input type="text" class="form-control form-control-sm" id="title" name="title" placeholder=""
+                  aria-describedby="validationServer04Feedback" required />
+                <div class="invalid-feedback">
+                  タイトルは必須項目です
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-md-6 mt-4 mb-2">
+                  <label for="formFileSm" class="form-label">作業段階</label>
+                  <select id="stage" class="form-select form-select-sm col-12" name="stage"
+                    aria-label=".form-select-sm example">
+                    <option value="1">下版予定</option>
+                    <option value="2">下版済み</option>
+                    <option value="3">作業中</option>
+                    <option value="4">最終確認中</option>
+                    <option value="5">作業完了</option>
+                  </select>
+                </div>
+                <div class="col col-md-6 mt-4">
+                  <label for="formFileSm" class="form-label">ステータス</label>
+                  <select id="status" class="form-select form-select-sm col-12" name="status"
+                    aria-label="form-select-sm example">
+                    <option value="99"> </option>
+                    <option value="1">下版作業中</option>
+                    <option value="2">PDF待ち</option>
+                    <option value="3">PDF作成済み</option>
+                    <option value="4">先方確認中</option>
+                    <option value="5">三協美術に依頼</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col col-sm-6 mb-4 mt-3">
+                  <label for="formFileSm" class="form-label">作業者</label>
+                  <select id="operator" class="form-select form-select-sm col-12" name="operator"
+                    aria-label=".form-select-sm example">
+                    <option value="99" selected></option>
+                    <option value="1">森澤@情報処理室</option>
+                    <option value="2">今野</option>
+                    <option value="3">山村</option>
+                  </select>
+                </div>
+                <div class="col col-sm-4 mb-4 mt-3">
+                  <label for="firstName" class="form-label">進捗</label>
+                  <div class="input-group">
+                    <select class="form-select form-select-sm col-12" name="percent" id="percent">
+                      <option value="0" selected>0</option>
+                      <option value="1">10</option>
+                      <option value="2">20</option>
+                      <option value="3">30</option>
+                      <option value="4">40</option>
+                      <option value="5">50</option>
+                      <option value="6">60</option>
+                      <option value="7">70</option>
+                      <option value="8">80</option>
+                      <option value="9">90</option>
+                      <option value="10">100</option>
+                    </select>
+                    <span class="input-group-text">％</span>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-sm-3 mt-2">
+                  <label for="firstName" class="form-label">期日</label>
+
+                  <select class="form-select form-select-sm" name="year" id="year" disabled='true'>
+                    <option value="2026">2026年</option>
+                  </select>
+                </div>
+                <div class="col col-sm-3 mt-2">
+                  <label for="firstName" class="form-label">月</label>
+
+                  <select class="form-select form-select-sm" name="month" id="month">
+                    <option value="01" selected>1月</option>
+                    <option value="02">2月</option>
+                    <option value="03">3月</option>
+                    <option value="04">4月</option>
+                    <option value="05">5月</option>
+                    <option value="06">6月</option>
+                    <option value="07">7月</option>
+                    <option value="08">8月</option>
+                    <option value="09">9月</option>
+                    <option value="10">10月</option>
+                    <option value="11">11月</option>
+                    <option value="12">12月</option>
+                  </select>
+                </div>
+                <div class="col col-sm-3 mt-2">
+                  <label for="firstName" class="form-label">日</label>
+
+                  <select class="form-select form-select-sm" name="day" id="day">
+                    <option value="" selected>-</option>
+                    <option value="01">1日</option>
+                    <option value="02">2日</option>
+                    <option value="03">3日</option>
+                    <option value="04">4日</option>
+                    <option value="05">5日</option>
+                    <option value="06">6日</option>
+                    <option value="07">7日</option>
+                    <option value="08">8日</option>
+                    <option value="09">9日</option>
+                    <option value="10">10日</option>
+                    <option value="11">11日</option>
+                    <option value="12">12日</option>
+                    <option value="13">13日</option>
+                    <option value="14">14日</option>
+                    <option value="15">15日</option>
+                    <option value="16">16日</option>
+                    <option value="17">17日</option>
+                    <option value="18">18日</option>
+                    <option value="19">19日</option>
+                    <option value="20">20日</option>
+                    <option value="21">21日</option>
+                    <option value="22">22日</option>
+                    <option value="23">23日</option>
+                    <option value="24">24日</option>
+                    <option value="25">25日</option>
+                    <option value="26">26日</option>
+                    <option value="27">27日</option>
+                    <option value="28">28日</option>
+                    <option value="29">29日</option>
+                    <option value="30">30日</option>
+                    <option value="31">31日</option>
+                  </select>
+                </div>
+
+                <div class="col col-sm-3 mt-2">
+                  <label for="country" class="form-label">予定工数</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control form-control-sm w-60" id="estimated_hours"
+                      name="estimated_hours">
+                    <span class="input-group-text">時間</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label mt-4">コメント</label>
+                <textarea class="form-control form-control-sm" name="comment" id="comment" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-6 offset-md-6">
+              <label for="validationServer04" class="form-label">作成者</label>
+              <select id="created_user" class="form-select form-select-sm col-12" name="created_user"
+                aria-label="form-select-sm example" aria-describedby="validationServer04Feedback" required>
+                <option value="99" selected></option>
+                <option value="1">森澤@情報処理室</option>
+                <option value="2">今野</option>
+                <option value="3">山村</option>
+              </select>
+              <div id="validationServer04Feedback" class="invalid-feedback">
+                作成者を選択してください.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" id="close_btn" class="btn btn-secondary w-25" data-bs-dismiss="modal">閉じる</button>
+        <button type="button" class="btn btn-primary ms-4 w-25" onclick="createDoneModal()">登　録</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 登録完了モーダル -->
+<div class="modal fade" id="createDoneModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createDoneModal"
+  aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="">登録完了</h1>
+        <button type="button" class="btn-close" onclick="windowReload()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row py-lg-5">
+          <div class="mx-auto">
+            <p class="lead text-body-secondary text-center"><span id="create_confirm_title"
+                class="col-9 fw-semibold"></span>の登録が完了しました。</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer gap-3 justify-content-center">
+        <button type="button" class="btn btn-primary w-25" onclick="windowReload()">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h1 class="modal-title fs-5" id="detail_title"><span id="detail_type"></span><span id="detail_title"></span>
+        </h1>
+      </div>
+      <div class="modal-body px-sm-5">
+        <div class="row">
+          <div class="mx-auto">
+            <div class="row">
+              <div class="row">
+                <div class="col col-md-6 mt-2 mb-2">
+                  <label for="formFileSm" class="form-label">作業段階</label>
+                  <select id="detail_stage" class="form-select form-select-sm col-12" name="stage"
+                    aria-label=".form-select-sm edit">
+                    <option value="1">下版予定</option>
+                    <option value="2">下版済み</option>
+                    <option value="3">作業中</option>
+                    <option value="4">最終確認中</option>
+                    <option value="5">作業完了</option>
+                  </select>
+                </div>
+                <div class="col col-md-6 mt-2">
+                  <label for="formFileSm" class="form-label">ステータス</label>
+                  <select id="detail_status" class="form-select form-select-sm col-12" name="status"
+                    aria-label="form-select-sm edit">
+                    <option value="99"> </option>
+                    <option value="1">下版作業中</option>
+                    <option value="2">PDF待ち</option>
+                    <option value="3">PDF作成済み</option>
+                    <option value="4">先方確認中</option>
+                    <option value="5">三協美術に依頼</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col col-sm-6 mb-4 mt-3">
+                  <label for="formFileSm" class="form-label">作業者</label>
+                  <select id="detail_operator" class="form-select form-select-sm col-12" name="operator"
+                    aria-label=".form-select-sm edit">
+                    <option value="99"></option>
+                    <option value="1">森澤@情報処理室</option>
+                    <option value="2">今野</option>
+                    <option value="3">山村</option>
+                  </select>
+                </div>
+                <div class="col col-sm-4 mb-4 mt-3">
+                  <label for="firstName" class="form-label">進捗</label>
+                  <div class="input-group">
+                    <select class="form-select form-select-sm col-12" name="percent" id="detail_percent">
+                      <option value="0" selected>0</option>
+                      <option value="1">10</option>
+                      <option value="2">20</option>
+                      <option value="3">30</option>
+                      <option value="4">40</option>
+                      <option value="5">50</option>
+                      <option value="6">60</option>
+                      <option value="7">70</option>
+                      <option value="8">80</option>
+                      <option value="9">90</option>
+                      <option value="10">100</option>
+                    </select>
+                    <span class="input-group-text">％</span>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-sm-6">
+                  <label for="firstName" class="form-label">期日：</label>
+
+                  <label for="firstName" class="form-label"><span id="detail_year"></span>年</label>
+                  <label for="firstName" class="form-label"><span id="detail_month"></span>月</label>
+
+                  <label for="firstName" class="form-label"><span id="detail_day"></span>日</label>
+                </div>
+
+                <div class="col col-sm-6">
+                  <label for="country" class="form-label">工数：</label>
+                  <label for="firstName" class="form-label"><span id="detail_estimated_hours"></span></label>
+
+                  <label for="firstName" class="form-label"><span id="detail_month"></span>時間</label>
+
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="editFormControlTextarea1" class="form-label mt-3">コメント</label>
+                <textarea class="form-control form-control-sm" name="comment" id="detail_comment" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col col-sm-6">
+                <label for="formFileSm" class="form-label">更新者</label>
+                <select id="detail_modified_user" class="form-select form-select-sm col-12" name="modified_user"
+                  aria-label="form-select-sm edit">
+                  <option value="99" selected></option>
+                  <option value="1">森澤@情報処理室</option>
+                  <option value="2">今野</option>
+                  <option value="3">山村</option>
+                </select>
+              </div>
+
+              <div class="col col-sm-6 mt-45">
+                <p>更新日：<span id="detail_update-date"></span></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-sm-6">
+                <label for="formFileSm" class="form-label">作成者：</label><span id="detail_created_user"></span>
+              </div>
+              <div class="col col-sm-6">
+                <p>作成日：<span id="detail_create-date"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger w-25" data-bs-toggle="modal" data-bs-target="#delModal"
+          onclick="deleteModal()">削除</button>
+        <button type="button" class="btn btn-primary w-25 ms-4" data-bs-dismiss="modal" onclick="">保存 / 閉じる</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 削除モーダル -->
+<div class="modal fade" id="delModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="delModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="delModalLabel">以下のデータを削除しますか？ </h1>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <p class="col-2 ps-3">タイトル：</p>
+          <p id="delete_confirm_title" class="col-9 fw-semibold"></p>
+
+        </div>
+        <div class="modal-footer gap-3 justify-content-center">
+          <button type="button" class="btn btn-secondary w-25" data-bs-toggle="modal"
+            data-bs-target="#editModal">いいえ</button>
+          <button type="button" data-bs-toggle="modal" class="btn btn-primary w-25" data-bs-target="#deleteDoneModal"
+            data-bs-target="#deleteDoneModal" onclick="deleteDoneModal()">削　除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 削除完了モーダル -->
+  <div class="modal fade" id="deleteDoneModal" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="deleteDoneModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deleteDoneModalLabel">削除完了</h1>
+          <button type="button" class="btn-close" onclick="windowReload()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row py-lg-5">
+            <div class="mx-auto">
+              <p class="lead text-body-secondary text-center">削除が完了しました。</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer gap-3 justify-content-center">
+          <button type="button" class="btn btn-primary w-25" onclick="windowReload()">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let js_array = ;
+    let task_name;
+
+    function isSingleDigit(val) {
+      const n = Number(val);
+      return Number.isInteger(n) && n >= 0 && n <= 9;
+    }
+    const now = new Date();
+
+    // 年、月、日を取得
+    const year_today = now.getFullYear(); // 西暦4桁
+    const month_today = now.getMonth() + 1; // 月 (0-11のため+1する) [12]
+    const date_today = now.getDate(); // 日
+
+    var reset_month;
+    if (isSingleDigit(month_today)) {
+      reset_month = String(month_today).padStart(2, '0');
+    } else {
+      reset_month = month_today;
+    }
+    $('#month').val(reset_month);
+    var reset_date;
+    if (isSingleDigit(date_today)) {
+      reset_date = String(date_today).padStart(2, '0');
+    } else {
+      reset_date = date_today;
+    }
+    $('#day').val(reset_date);
+
+    function createDoneModal() {
+
+      console.log('登録処理スタート！！');
+
+      const checkedMedia = $('.form-check-input:checked').map(function () {
+        return $(this).val(); // 各チェックボックスのvalueを配列に格納
+      })
+      var type_id = checkedMedia[0];
+      console.log(type_id);
+
+      if (type_id == 1) {
+        detail_type = '【医書JP】';
+      } else if (type_id == 2) {
+        detail_type = '【J-STAGE】';
+      } else if (type_id == 3) {
+        detail_type = '【旧Medical Finder】';
+      }
+
+      task_name = $("#title").val();
+      console.log("task_name");
+      console.log(task_name);
+      if (!task_name) {
+        $("#title").addClass("is-invalid");
+        return;
+      }
+      if (task_name.match(/医書/i) || task_name.match(/STAGE/i) || task_name.match(/Medical/i)) {
+        create_confirm_title = task_name;
+      } else {
+        create_confirm_title = detail_type + '　' + task_name;
+      }
+      console.log("create_confirm_title");
+      console.log(create_confirm_title);
+
+      var stage = $("#stage").val();
+      console.log(stage);
+      var status = $("#status").val();
+      console.log(status);
+      var operator = $("#operator").val();
+      console.log(operator);
+      var percent = $("#percent").val();
+      console.log(percent);
+
+      var year = $("#year").val();
+      console.log(year);
+      var month = $("#month").val();
+      console.log(month);
+      var day = $("#day").val();
+      console.log(day);
+      var due_date = year + month + day;
+      var estimated_hours = $("#estimated_hours").val();
+      console.log(estimated_hours);
+      var comment = $("#comment").val();
+      console.log(comment);
+      var created_user = $("#created_user").val();
+      console.log(created_user);
+      if (created_user == '99') {
+        $("#created_user").addClass("is-invalid");
+        return;
+      }
+      var data_obj = {
+        type: type_id,
+        task_name: task_name,
+        stage: stage,
+        status: status,
+        operator: operator,
+        percent: percent,
+        due_date: due_date,
+        estimated_hours: estimated_hours,
+        comment: comment,
+        created_user: created_user
+      };
+
+
+      fetch('http://localhost/App/boot_register.php', { // 第1引数に送り先
+        method: 'POST', // メソッド指定
+        headers: {
+          'Content-Type': 'application/json'
+        }, // jsonを指定
+        body: JSON.stringify(data_obj) // json形式に変換して添付
+      })
+
+        .catch(error => { // ④ エラー処理
+          console.error('Error:', error);
+        });
+      $("#create_confirm_title").text(create_confirm_title);
+
+      // モーダルのDOM要素を取得
+      const exampleModal = document.getElementById('exampleModal');
+      // インスタンスを取得して閉じる
+      const exampleModalInstance = bootstrap.Modal.getInstance(exampleModal);
+      if (exampleModalInstance) {
+        exampleModalInstance.hide();
+      }
+      const createDoneModal = new bootstrap.Modal(document.getElementById('createDoneModal'));
+      createDoneModal.show();
+
+
+    }
+
+    function windowReload() {
+      window.location.reload();
+    }
+  </script>
+
+  <script>
+    dragula([
+      document.querySelector('#backlog'),
+      document.querySelector('#prepare'),
+      document.querySelector('#progress'),
+      document.querySelector('#check'),
+      document.querySelector('#completed')
+    ]);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+  <script>
+    let create_confirm_title;
+    let delete_confirm_title;
+    let detail_result;
+    // 詳細モーダル表示処理
+    const detailModal = document.getElementsByClassName("detail-modal");
+    const detailModals = Array.from(detailModal);
+
+    detailModals.forEach(function (detailModal) {
+      detailModal.addEventListener("dblclick", () => {
+        var recipient = detailModal.dataset.index;
+
+        detail_result = js_array.find(({
+          id
+        }) => id == recipient);
+
+        var date = detail_result.due_date;
+        var year = date.substr(0, 4);
+        let month_date = date.replace(year, "");
+        var month = month_date.substr(0, 2);
+        month = month.replace(/^0+/, '');
+        let day = month_date.replace(month, "");
+        day = day.replace(/^0+/, '');
+
+        var detail_type = '';
+        if (detail_result.type == 1) {
+          detail_type = '【医書JP】';
+        } else if (detail_result.type == 2) {
+          detail_type = '【J-STAGE】';
+        } else if (detail_result.type == 3) {
+          detail_type = '【旧Medical Finder】';
+        }
+
+        if (detail_result.task_name.match(/医書/i) || detail_result.task_name.match(/STAGE/i) || detail_result.task_name.match(/Medical/i)) {
+
+          $("#detail_type").text('');
+          delete_confirm_title = detail_result.task_name;
+        } else {
+
+          $("#detail_type").text(detail_type);
+          delete_confirm_title = detail_type + '　' + detail_result.task_name;
+          detail_result.task_name = detail_type + '　' + detail_result.task_name;
+        }
+
+        $('#detail_title').text(detail_result.task_name);
+
+        $('#detail_title').text(detail_result.task_name);
+        $('#detail_stage').val(detail_result.stage);
+        $('#detail_status').val(detail_result.status);
+
+        $('#detail_operator').val(detail_result.operator);
+        $('#detail_percent').val(detail_result.percent);
+
+        $('#detail_year').text(year);
+
+        if (month) {
+          $('#detail_month').text(month);
+        } else {
+          $('#detail_month').text('--');
+        }
+
+        if (day) {
+          $('#detail_day').text(day);
+        } else {
+          $('#detail_day').text('--');
+        }
+
+        if (detail_result.estimated_hours) {
+          $('#detail_estimated_hours').text(detail_result.estimated_hours);
+        } else {
+          $('#detail_estimated_hours').text('--');
+        }
+
+        $('#detail_create-date').text(detail_result.created);
+        $('#detail_update-date').text(detail_result.updated);
+
+        $("#detail_comment").val(detail_result.comment);
+        $("#detail_modified_user").val(detail_result.updated_user);
+        var created_user = '';
+        if (detail_result.created_user == 1) {
+          created_user = '森澤@情報処理室';
+        } else if (detail_result.created_user == 2) {
+          created_user = '今野';
+        } else if (detail_result.created_user == 3) {
+          created_user = 'yamamura';
+        }
+        $("#detail_created_user").text(created_user);
+        const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        editModal.show();
+
+      });
+
+    });
+
+    editModal.addEventListener('hidden.bs.modal', event => {
+      // ここに実行したい処理を記述
+      modal_close();
+
+    });
+
+    function modal_close() {
+      console.log('editモーダルを閉じる！！！');
+      setTimeout(() => {
+        if ($('#delModal').hasClass('show')) {
+          console.log('delモーダルは開いています');
+          return;
+        } else {
+          console.log('delモーダルは閉じています');
+        }
+        var stage = $('#detail_stage').val();
+        var status = $('#detail_status').val();
+        var operator = $('#detail_operator').val();
+        var percent = $('#detail_percent').val();
+        var comment = $('#detail_comment').val();
+        var modified_user = $('#detail_modified_user').val();
+        if (detail_result.stage != stage || detail_result.status != status || detail_result.operator != operator || detail_result.percent != percent || detail_result.comment != comment || detail_result.updated_user != modified_user) {
+          console.log('変更されました！！');
+
+          var data_obj = {
+            id: detail_result.id,
+            stage: stage,
+            status: status,
+            operator: operator,
+            percent: percent,
+            comment: comment,
+            modified_user: modified_user
+          };
+
+          fetch('http://localhost/App/boot_edit.php', { // 第1引数に送り先
+            method: 'POST', // メソッド指定
+            headers: {
+              'Content-Type': 'application/json'
+            }, // jsonを指定
+            body: JSON.stringify(data_obj) // json形式に変換して添付
+          })
+            .then(response => response.json())
+            .catch(error => { // ④ エラー処理
+              console.error('Error:', error);
+            });
+          setTimeout(() => {
+            window.location.reload();
+          }, 300);
+        }
+      }, 300);
+
+    }
+
+    $(function () {
+      $('input[name="media"]').on('click', function () {
+        if ($(this).prop('checked')) {
+          $('input[name="media"]').prop('checked', false);
+          $(this).prop('checked', true);
+        }
+      });
+    });
+
+    var exampleModal = document.getElementById('exampleModal');
+    exampleModal.addEventListener('hidden.bs.modal', function (event) {
+      // ここに実行したい処理を記述
+      console.log('新規追加モーダルが閉じました');
+
+      $("#title").removeClass("is-invalid");
+      $("#created_user").removeClass("is-invalid");
+      var checkbox1 = document.getElementById('check_media1');
+      var checkbox2 = document.getElementById('check_media2');
+      var checkbox3 = document.getElementById('check_media3');
+      checkbox1.checked = true;
+      checkbox2.checked = false;
+      checkbox3.checked = false;
+      $('#title').val('');
+      $('#stage').val(1);
+      $('#status').val(99);
+      $('#operator').val(99);
+      $('#percent').val(0);
+      $('#percent').val(0);
+
+      var reset_month;
+      if (isSingleDigit(month_today)) {
+        reset_month = String(month_today).padStart(2, '0');
+      } else {
+        reset_month = month_today;
+      }
+      $('#month').val(reset_month);
+      var reset_date;
+      if (isSingleDigit(date_today)) {
+        reset_date = String(date_today).padStart(2, '0');
+      } else {
+        reset_date = date_today;
+      }
+      $('#day').val(reset_date);
+
+      $('#estimated_hours').val('');
+      $('#comment').val('');
+      $('#created_user').val(99);
+    });
+
+    function deleteModal() {
+
+      $('#delete_confirm_title').text(delete_confirm_title);
+
+      console.log(detail_result.id);
+    }
+
+    function deleteDoneModal() {
+      $('#delete_confirm_title').text(delete_confirm_title);
+      console.log(detail_result.id);
+
+      var data_obj = {
+        id: detail_result.id
+      };
+      fetch('http://localhost/app/boot_delete.php', { // 第1引数に送り先
+        method: 'POST', // メソッド指定
+        headers: {
+          'Content-Type': 'application/json'
+        }, // jsonを指定
+        body: JSON.stringify(data_obj) // json形式に変換して添付
+      })
+        .then(response => response.json())
+        .catch(error => { // ④ エラー処理
+          console.error('Error:', error);
+        });
+
+      setTimeout(() => {
+        windowReload()
+      }, 250);
+    }
+  </script>
